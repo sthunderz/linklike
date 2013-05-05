@@ -5,7 +5,6 @@
   URL: <g:textField name="url"/><br/>
   <input type="submit" value="Add new link"/>
 </g:form>
-
 <hr>
 
 <ul>
@@ -13,7 +12,14 @@
     <li>No links</li>
   <% } else { %>
     <% for(link in links) { %>
-      <li><%= link.title %></li>
+      <g:form name="linkCreateForm" url="[action:'vote']">
+        <li><%= link.title %></li>
+        <g:hiddenField name="title" value="${link.title}"/>
+        <g:hiddenField name="url" value="${link.url}"/>
+        <input type="submit" value="vote"/>
+        <%= link.votenumber %>
+      </g:form>
     <% } %> 
   <% } %>
 </ul>
+
